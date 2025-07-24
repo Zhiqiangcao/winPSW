@@ -69,14 +69,14 @@ winstat_aow = function(data,outcomevar,treatment,covariate,covariate_reg){
   po = dim(covariates_reg)[2]
   
   ### mu-function
-  lp_start = rep(0, po)
-  th_start = c(-1, 1)
-  start_values = c(lp_start, th_start)
+  #lp_start = rep(0, po)
+  #th_start = c(-1, 1)
+  #start_values = c(lp_start, th_start)
   model.formual = as.formula(paste("factor(",paste(outcomevar),")","~",paste(covariate_reg,collapse="+"),sep=""))
-  dr_trt = polr(model.formual,data = data[treatments==1,],start = start_values)
+  dr_trt = polr(model.formual,data = data[treatments==1,])
   cond_prob_trt = predict(dr_trt, newdata = data, type = "probs")
   
-  dr_ctrl = polr(model.formual, data = data[treatments == 0,],start = start_values)
+  dr_ctrl = polr(model.formual, data = data[treatments == 0,])
   cond_prob_ctrl = predict(dr_ctrl, newdata = data, type = "probs")
   
   
