@@ -342,17 +342,9 @@ winstat_unadj_new = function(data, outcomevar, treatment, method="IFM"){
     #influence function
     inf_unadj_trt = inf_unadj_ctrl = numeric(n)
     for(i in 1:n){
-      #use (A.8) of web appendix to compute influence function of unadjustment
       q_unadj_i_trt = WP_trt_unadj + (aw1_unadj_trt[i] - WP_trt_unadj*b1_unadj_trt[i])/B_unadj
       q_unadj_i_ctrl = WP_ctrl_unadj + (aw1_unadj_ctrl[i] - WP_ctrl_unadj*b1_unadj_ctrl[i])/B_unadj
-      
-      #If we use (A.9) of web appendix to compute influence function of unadjustment, then we should use the following
-      #q_unadj_i_trt = WP_trt_unadj + (aw1_unadj_trt[i]/B_unadj - WP_trt_unadj)
-      #q_unadj_i_ctrl = WP_ctrl_unadj + (aw1_unadj_ctrl[i]/B_unadj - WP_ctrl_unadj)
-      #note: results from (A.8) and (A.9) are quite similar.
-      #in Table S1, we use (A.9) to compute variance of unadj estimator
-      #and in other tables of paper, we use (A.8) to compute variance of unadj estimator
-      
+  
       temp_trt = 2*(q_unadj_i_trt - WP_trt_unadj) 
       temp_ctrl = 2*(q_unadj_i_ctrl - WP_ctrl_unadj) 
       
